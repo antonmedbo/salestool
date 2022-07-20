@@ -6,9 +6,12 @@ class ProductList extends Component {
     super(props);
   }
 
+  
+
   render() {
     return (
       <div className="container main-content">
+        {/* for each loop */}
         <ProductRow />
         <ProductRow />
         <ProductRow />

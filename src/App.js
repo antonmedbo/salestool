@@ -5,7 +5,6 @@ import SplitPane, {
   SplitPaneRight,
   SplitPaneTop,
 } from "./Components/Panes/SplitPane";
-import QuoteContext from "./Components/Panes/QuoteContext";
 import { useState } from "react";
 
 import "./App.css";
@@ -30,11 +29,10 @@ const quotes = [
 ];
 
 function App() {
-  const [currQuote, setCurrQuote] = useState(1);
 
   return (
     <div className="App">
-      <QuoteContext.Provider value={{ quotes, currQuote, setCurrQuote }}>
+
         <SplitPane className="split-pane-row">
           <SplitPaneLeft>
             <SplitPane className="split-pane-col">
@@ -47,7 +45,7 @@ function App() {
 
           <SplitPaneRight />
         </SplitPane>
-      </QuoteContext.Provider>
+
     </div>
   );
 }

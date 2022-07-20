@@ -5,7 +5,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import QuoteContext from "./QuoteContext";
 import SplitPaneContext from "./SplitPaneContext";
 import ProductList from "../Products/ProductList";
 
@@ -73,7 +72,6 @@ export const Divider = (props) => {
 export const SplitPaneTop = (props) => {
   const topRef = createRef();
   const { clientHeight, setClientHeight } = useContext(SplitPaneContext);
-  const { quotes, setCurrQuote } = useContext(QuoteContext);
 
   useEffect(() => {
     if (!clientHeight) {
@@ -88,27 +86,15 @@ export const SplitPaneTop = (props) => {
   return (
     <div {...props} className="split-pane-top" ref={topRef}>
       <h1>Categories</h1>
-      <ul>
-        {quotes.map((el, i) => {
-          return (
-            <li key={i}>
-              <a href="#" onClick={() => setCurrQuote(el.id)}>
-                {el.author}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 };
 
 export const SplitPaneBottom = (props) => {
-  const { currQuote } = useContext(QuoteContext);
 
   return (
-    <div {...props} className="split-pane-bottom">
-      <b>Varukorgen</b>: {currQuote}
+    <div className="split-pane-bottom">
+      <b>Varukorgen</b>
     </div>
   );
 };
@@ -131,13 +117,11 @@ export const SplitPaneLeft = (props) => {
 };
 
 export const SplitPaneRight = (props) => {
-  const { quotes, currQuote } = useContext(QuoteContext);
-  const quote = quotes.find((el) => el.id === currQuote);
 
   return (
     <div className="container">
       <header className="header">
-        <h1>{quote.author}</h1>
+        <h1>text</h1>
       </header>
       <ProductList />
     </div>
