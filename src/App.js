@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import SplitPane, {
+  Divider,
+  SplitPaneBottom,
+  SplitPaneLeft,
+  SplitPaneRight,
+  SplitPaneTop,
+} from "./Components/Panes/SplitPane";
+import QuoteContext from "./Components/Panes/QuoteContext";
+import { useState } from "react";
+
+import "./App.css";
+
+const quotes = [
+  {
+    id: 1,
+    author: "Shimano",   
+  },
+  {
+    id: 2,
+    author: "Sram",
+  },
+  {
+    id: 3,
+    author: "Specialized",
+  },
+  {
+    id: 4,
+    author: "BBB",
+  },
+];
 
 function App() {
+  const [currQuote, setCurrQuote] = useState(1);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuoteContext.Provider value={{ quotes, currQuote, setCurrQuote }}>
+        <SplitPane className="split-pane-row">
+          <SplitPaneLeft>
+            <SplitPane className="split-pane-col">
+              <SplitPaneTop />
+              <Divider className="separator-row" />
+              <SplitPaneBottom />
+            </SplitPane>
+          </SplitPaneLeft>
+          <Divider className="separator-col" />
+
+          <SplitPaneRight />
+        </SplitPane>
+      </QuoteContext.Provider>
     </div>
   );
 }
